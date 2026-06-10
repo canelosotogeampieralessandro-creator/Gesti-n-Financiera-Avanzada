@@ -184,6 +184,15 @@
                                 <p className="text-gray-800 text-lg leading-relaxed">Industria pesquera de consumo humano indirecto (CHI) y directo (CHD).</p>
                             </div>
                         </div>
+
+                        <div className="mt-10">
+                            <h3 className="text-exalmar-blue font-black text-xl mb-2 uppercase tracking-wide">Breve reseña histórica</h3>
+                            <p className="text-gray-800 text-lg leading-relaxed">
+                                Empresa peruana del sector pesquero fundada en 1992. Se especializa en la captura y procesamiento de recursos hidrobiológicos, principalmente anchoveta, destinada a la producción de harina y aceite de pescado.
+                                <br/><br/>
+                                A lo largo de los años, la empresa ha consolidado su presencia en la industria pesquera nacional mediante la modernización de su flota y plantas de procesamiento, así como la adopción de prácticas sostenibles. Actualmente, es una de las principales compañías pesqueras del Perú, con participación en mercados internacionales y un enfoque en la eficiencia y responsabilidad ambiental.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -576,9 +585,9 @@
                 title = "Mapa de Calor: Riesgo de Liquidez";
                 gridData = [
                     // Fila 5: Probabilidad Muy Alta
-                    [{ l: 'Medio', c: 'bg-yellow-100 text-yellow-800 border-yellow-200' }, { l: 'Medio', c: 'bg-yellow-100 text-yellow-800 border-yellow-200' }, { l: 'Alto', c: 'bg-orange-100 text-orange-800 border-orange-200' }, { l: 'Crítico', r: 'R1', c: 'bg-red-100 text-red-800 border-red-200 shadow-md transform scale-[1.02] font-bold ring-2 ring-red-400' }, { l: 'Crítico', c: 'bg-red-100 text-red-800 border-red-200' }],
+                    [{ l: 'Medio', c: 'bg-yellow-100 text-yellow-800 border-yellow-200' }, { l: 'Medio', c: 'bg-yellow-100 text-yellow-800 border-yellow-200' }, { l: 'Alto', c: 'bg-orange-100 text-orange-800 border-orange-200' }, { l: 'Crítico', c: 'bg-red-100 text-red-800 border-red-200' }, { l: 'Crítico', c: 'bg-red-100 text-red-800 border-red-200' }],
                     // Fila 4: Probabilidad Alta
-                    [{ l: 'Bajo', c: 'bg-green-100 text-green-800 border-green-200' }, { l: 'Medio', r: 'R5', c: 'bg-yellow-100 text-yellow-800 border-yellow-200 shadow-md transform scale-[1.02] font-bold ring-2 ring-yellow-400' }, { l: 'Alto', c: 'bg-orange-100 text-orange-800 border-orange-200' }, { l: 'Alto', c: 'bg-orange-100 text-orange-800 border-orange-200' }, { l: 'Crítico', c: 'bg-red-100 text-red-800 border-red-200' }],
+                    [{ l: 'Bajo', c: 'bg-green-100 text-green-800 border-green-200' }, { l: 'Medio', r: 'R5', c: 'bg-yellow-100 text-yellow-800 border-yellow-200 shadow-md transform scale-[1.02] font-bold ring-2 ring-yellow-400' }, { l: 'Alto', c: 'bg-orange-100 text-orange-800 border-orange-200' }, { l: 'Alto', c: 'bg-orange-100 text-orange-800 border-orange-200' }, { l: 'Crítico', r: 'R1', c: 'bg-red-100 text-red-800 border-red-200 shadow-md transform scale-[1.02] font-bold ring-2 ring-red-400' }],
                     // Fila 3: Probabilidad Media
                     [{ l: 'Bajo', c: 'bg-green-100 text-green-800 border-green-200' }, { l: 'Medio', c: 'bg-yellow-100 text-yellow-800 border-yellow-200' }, { l: 'Medio', r: 'R4', c: 'bg-yellow-100 text-yellow-800 border-yellow-200 shadow-md transform scale-[1.02] font-bold ring-2 ring-yellow-400' }, { l: 'Alto', r: 'R2', c: 'bg-orange-100 text-orange-800 border-orange-200 shadow-md transform scale-[1.02] font-bold ring-2 ring-orange-400' }, { l: 'Crítico', c: 'bg-red-100 text-red-800 border-red-200' }],
                     // Fila 2: Probabilidad Baja
@@ -631,8 +640,8 @@
             }
 
             if (gridData) {
-                const yLabels = ['5 - Muy Alta', '4 - Alta', '3 - Media', '2 - Baja', '1 - Muy Baja'];
-                const xLabels = ['1 - Muy Bajo', '2 - Bajo', '3 - Medio', '4 - Alto', '5 - Muy Alto'];
+                const yLabels = ['Muy alta', 'Alta', 'Media', 'Baja', 'Muy baja'];
+                const xLabels = ['Muy bajo', 'Bajo', 'Medio', 'Alto', 'Muy alto'];
 
                 return (
                     <div className="flex flex-col h-full w-full bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -646,39 +655,55 @@
                         </div>
                         
                         <div className="flex-grow flex items-center justify-center p-8 bg-gray-50 overflow-auto">
-                            <div className="grid grid-cols-[auto_repeat(5,1fr)] grid-rows-[auto_repeat(5,1fr)] gap-3 w-full max-w-4xl bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-                                {/* Esquina vacía */}
-                                <div className="flex items-end justify-end p-2 text-sm font-bold text-gray-500 text-right leading-tight border-b-2 border-r-2 border-gray-100">
-                                    Probabilidad \<br/>Impacto
-                                </div>
-                                
-                                {/* Cabeceras Eje X (Impacto) */}
-                                {xLabels.map((lbl, idx) => (
-                                    <div key={idx} className="bg-gray-50 border-b-2 border-gray-200 p-4 text-center text-sm font-bold text-exalmar-dark flex items-center justify-center">
-                                        {lbl}
-                                    </div>
-                                ))}
-
-                                {/* Filas (Probabilidad + Celdas) */}
-                                {gridData.map((row, rowIdx) => (
-                                    <React.Fragment key={rowIdx}>
-                                        {/* Cabecera Eje Y */}
-                                        <div className="bg-gray-50 border-r-2 border-gray-200 p-4 flex items-center justify-end text-sm font-bold text-exalmar-dark text-right">
-                                            {yLabels[rowIdx]}
+                            <div className="flex flex-col items-center w-full max-w-4xl bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                                <div className="flex w-full">
+                                    {/* Contenedor Izquierdo (Eje Y) */}
+                                    <div className="flex mr-4 shrink-0">
+                                        <div className="bg-gray-800 text-white rounded-full flex items-center justify-center w-10 mr-4 py-8 shadow-md">
+                                            <span className="transform -rotate-90 whitespace-nowrap font-black tracking-widest text-lg">Probabilidad</span>
                                         </div>
-                                        {/* Celdas */}
-                                        {row.map((cell, cellIdx) => (
-                                            <div key={cellIdx} className={`relative flex flex-col items-center justify-center p-6 border rounded-xl transition-all ${cell.c}`}>
-                                                <span className={`text-base ${cell.r ? 'font-black' : 'font-medium'}`}>{cell.l}</span>
-                                                {cell.r && (
-                                                    <span className="mt-3 bg-white px-4 py-1.5 rounded-lg shadow-md text-black font-black text-lg border border-gray-300">
-                                                        {cell.r}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        ))}
-                                    </React.Fragment>
-                                ))}
+                                        <div className="flex flex-col justify-around text-right text-gray-800 font-bold italic mr-4 w-28">
+                                            {yLabels.map((lbl, idx) => (
+                                                <div key={idx} className="flex-1 flex items-center justify-end">{lbl}</div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Contenedor Derecho (Celdas y Eje X) */}
+                                    <div className="flex flex-col flex-grow">
+                                        {/* Celdas del Mapa de Calor */}
+                                        <div className="grid grid-cols-5 grid-rows-5 gap-1 w-full flex-grow">
+                                            {gridData.map((row, rowIdx) => (
+                                                <React.Fragment key={rowIdx}>
+                                                    {row.map((cell, cellIdx) => (
+                                                        <div key={cellIdx} className={`relative flex flex-col items-center justify-center p-4 min-h-[80px] rounded-sm transition-all ${cell.c}`}>
+                                                            <span className={`text-sm ${cell.r ? 'font-black' : 'font-medium'}`}>{cell.l}</span>
+                                                            {cell.r && (
+                                                                <span className="mt-2 bg-gray-800 text-white rounded-full w-7 h-7 flex items-center justify-center font-black shadow-md text-sm">
+                                                                    {cell.r.replace('R', '')}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                    ))}
+                                                </React.Fragment>
+                                            ))}
+                                        </div>
+
+                                        {/* Cabeceras Eje X (Impacto) */}
+                                        <div className="grid grid-cols-5 gap-1 w-full mt-4">
+                                            {xLabels.map((lbl, idx) => (
+                                                <div key={idx} className="text-center font-bold italic text-gray-800 flex items-center justify-center text-sm">
+                                                    {lbl}
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Cápsula Impacto */}
+                                        <div className="bg-gray-800 text-white rounded-full flex items-center justify-center py-2 mt-4 font-black tracking-widest text-lg shadow-md">
+                                            Impacto
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
