@@ -8,45 +8,32 @@ const menuData = [
         subItems: [
             { id: 'info-datos', title: 'Datos de la Empresa' },
             { id: 'info-mision', title: 'Misión y Visión' },
-            { id: 'info-financieros', title: 'Estados Financieros' }
+            { id: 'liquidez-estado-resultado', title: 'Estado de Resultado Integral' },
+            { id: 'liquidez-estado-situacion', title: 'Estado de Situación Financiera' },
+            { id: 'liquidez-estado-flujo', title: 'Estado de Flujos de Efectivo' },
+            { id: 'liquidez-evolucion', title: 'Evolución' }
         ]
     },
     { 
         id: 'liquidez', 
-        title: 'Riesgo de liquidez', 
+        title: 'Análisis de la fuente de financiamiento', 
         type: 'expandable',
         subItems: [
-            { id: 'liquidez-matriz', title: 'Matriz de riesgo' },
-            { id: 'liquidez-mapa', title: 'Mapa de calor' }
+            { id: 'liquidez-mercado-monetario', title: 'Mercado Monetario' },
+            { id: 'liquidez-simulador-tasas', title: 'Simulador de Tasas' },
+            { id: 'liquidez-mercado-capitales', title: 'Mercado de Capitales' }
         ]
     },
     { 
         id: 'crediticio', 
-        title: 'Riesgo crediticio', 
+        title: 'Estrategia de Financiamiento', 
         type: 'expandable',
         subItems: [
             { id: 'crediticio-matriz', title: 'Matriz de riesgo' },
             { id: 'crediticio-mapa', title: 'Mapa de calor' }
         ]
     },
-    { 
-        id: 'mercado', 
-        title: 'Riesgo de mercado', 
-        type: 'expandable',
-        subItems: [
-            { id: 'mercado-matriz', title: 'Matriz de riesgo' },
-            { id: 'mercado-mapa', title: 'Mapa de calor' }
-        ]
-    },
-    { 
-        id: 'operacional', 
-        title: 'Riesgo operacional', 
-        type: 'expandable',
-        subItems: [
-            { id: 'operacional-matriz', title: 'Matriz de riesgo' },
-            { id: 'operacional-mapa', title: 'Mapa de calor' }
-        ]
-    },
+
     { id: 'conclusiones', title: 'Conclusiones', type: 'simple' },
     { id: 'recomendaciones', title: 'Recomendaciones', type: 'simple' }
 ];
