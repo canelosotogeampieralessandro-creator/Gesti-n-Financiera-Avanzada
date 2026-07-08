@@ -8,6 +8,7 @@ import { SimuladorAccionesView } from "./SimuladorAccionesView";
 import { EscenariosView } from "./EscenariosView";
 import { EstrategiaFinanciamientoView } from "./EstrategiaFinanciamientoView";
 import { WaccView } from "./WaccView";
+import { ProyectoInversionView } from "./ProyectoInversionView";
 import { SimulationProvider } from "./context/SimulationContext";
 
 
@@ -47,6 +48,14 @@ import { SimulationProvider } from "./context/SimulationContext";
                     { id: 'liquidez-estrategia', title: 'Motor de Decisión Financiera' }
                 ]
             },
+            {
+                id: 'proyecto',
+                title: 'Proyecto Estratégico',
+                type: 'expandable',
+                subItems: [
+                    { id: 'proyecto-steam', title: 'Modernización Steam Dried' }
+                ]
+            },
 
             { id: 'conclusiones', title: 'Conclusiones', type: 'simple' },
             { id: 'recomendaciones', title: 'Recomendaciones', type: 'simple' }
@@ -79,7 +88,7 @@ import { SimulationProvider } from "./context/SimulationContext";
                         className="group relative px-8 py-4 bg-white text-exalmar-blue font-black text-xl rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
                     >
                         <span className="relative z-10 flex items-center gap-3">
-                            Ingresar al Panel de Riesgos
+                            Ingresar
                             <i className="ph ph-arrow-right-bold text-2xl group-hover:translate-x-2 transition-transform"></i>
                         </span>
                         <div className="absolute inset-0 bg-gray-100 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
@@ -1059,36 +1068,44 @@ import { SimulationProvider } from "./context/SimulationContext";
         const ConclusionesView = () => {
             const conclusiones = [
                 {
-                    icon: "ph-chart-line-up",
-                    title: "Sensibilidad del Costo de Capital (WACC)",
-                    text: "Exalmar mantiene un costo de capital competitivo, pero altamente sensible a variaciones en su apalancamiento y al entorno macroeconómico. Un exceso de deuda encarece el riesgo percibido por los accionistas (Ke), mientras que el capital propio diluye el ROE, requiriendo un balance milimétrico.",
+                    icon: "ph-chart-line-down",
+                    title: "Rentabilidad Positiva pero con Márgenes en Compresión",
+                    text: "En 2025 Exalmar obtuvo ingresos por S/ 531.5 MM y utilidad neta de S/ 38.7 MM (ROE 12.2%). No obstante, el margen bruto se redujo de 30.5% (2021) a 24.0% (2025), reflejando la presión de costos y la volatilidad de precios y biomasa.",
                     color: "border-blue-500",
                     iconColor: "text-blue-600",
                     bgIcon: "bg-blue-100"
                 },
                 {
-                    icon: "ph-scales",
-                    title: "Trade-off: Costo vs Dilución en Capitales",
-                    text: "El mercado de capitales ofrece alternativas claras pero divergentes. La emisión de bonos corporativos resulta más barata por el escudo fiscal (Kd < Ke), pero eleva el riesgo de liquidez. Por contraparte, emitir acciones blinda financieramente a la empresa ante shocks operativos, pero genera una fuerte dilución patrimonial.",
+                    icon: "ph-drop",
+                    title: "Posición de Liquidez Ajustada",
+                    text: "La liquidez corriente es 0.82 (menor a 1) y el capital de trabajo es NEGATIVO (S/ -64.3 MM) en 2025, lo que indica que la operación se financia con pasivos de corto plazo y enfrenta riesgo de calce.",
                     color: "border-orange-500",
                     iconColor: "text-orange-600",
                     bgIcon: "bg-orange-100"
                 },
                 {
                     icon: "ph-warning-octagon",
-                    title: "Exposición de Liquidez ante Shocks Biológicos",
-                    text: "La estructura de flujos de Exalmar es altamente vulnerable a la volatilidad oceanográfica (Fenómeno de El Niño). Las caídas bruscas del EBITDA reducen drásticamente la Cobertura de Intereses, poniendo a prueba la capacidad de la empresa para honrar sus deudas si estas se concentran en el corto plazo.",
+                    title: "Alto Apalancamiento Financiero",
+                    text: "El ratio de apalancamiento alcanzó 1.82x; la deuda financiera (~S/ 383 MM) supera al patrimonio (S/ 317 MM) y los gastos financieros (S/ 27.8 MM) absorben ~36% de la utilidad operativa, limitando la flexibilidad financiera.",
                     color: "border-red-500",
                     iconColor: "text-red-600",
                     bgIcon: "bg-red-100"
                 },
                 {
-                    icon: "ph-intersect",
-                    title: "Dinámica de Riesgo y Rentabilidad",
-                    text: "No existe una fuente de financiamiento estática ideal. La estrategia óptima fluctúa según la tolerancia al riesgo de la gerencia; un perfil agresivo maximizará el ROE vía endeudamiento bancario/bonos, mientras que un entorno incierto exige estructuras conservadoras (acciones/mixto) para asegurar la viabilidad de la compañía.",
+                    icon: "ph-rocket-launch",
+                    title: "El Proyecto de Modernización Crea Valor",
+                    text: "Con una inversión de S/ 39.8 MM arroja un VAN de +S/ 12.2 MM, una TIR de 18.9% (muy superior al WACC de 8.7%) y recupera la inversión en 3.4 años; la sensibilidad muestra VAN positivo en todo el rango de WACC evaluado.",
                     color: "border-green-500",
                     iconColor: "text-green-600",
                     bgIcon: "bg-green-100"
+                },
+                {
+                    icon: "ph-puzzle-piece",
+                    title: "Estructura de Financiamiento Mixta Eficiente",
+                    text: "Combinar el mercado monetario (capital de trabajo) con el mercado de capitales (bonos + leasing + aporte) logra un costo promedio ponderado después de impuestos de 7.4%, por debajo del WACC del proyecto y respetando el calce de plazos.",
+                    color: "border-purple-500",
+                    iconColor: "text-purple-600",
+                    bgIcon: "bg-purple-100"
                 }
             ];
 
@@ -1137,36 +1154,44 @@ import { SimulationProvider } from "./context/SimulationContext";
         const RecomendacionesView = () => {
             const recomendaciones = [
                 {
-                    icon: "ph-certificate",
-                    title: "Estructuración de Deuda a Largo Plazo (Bonos)",
-                    text: "Se recomienda priorizar la emisión de bonos corporativos sobre deuda bancaria de corto plazo. Esto permite 'calzar' la maduración de los pasivos con los flujos de caja operativos a largo plazo, reduciendo la presión sobre la liquidez inmediata y manteniendo un costo de deuda (Kd) competitivo.",
-                    color: "border-blue-500",
-                    iconColor: "text-blue-600",
-                    bgIcon: "bg-blue-100"
-                },
-                {
-                    icon: "ph-shield-plus",
-                    title: "Gestión Dinámica de Estructuras Mixtas",
-                    text: "Ante necesidades intensivas de CapEx o refinanciamientos mayores, se debe adoptar un enfoque de financiamiento mixto (ej. 70% Bonos / 30% Acciones). Esto equilibra la optimización del escudo fiscal de la deuda sin romper el techo crítico de apalancamiento, suavizando el impacto negativo sobre el ROE.",
+                    icon: "ph-wallet",
+                    title: "Fortalecer el Capital de Trabajo y Liquidez",
+                    text: "Financiar el capital de trabajo del proyecto con el mercado monetario (línea revolvente / papeles comerciales) y optimizar el ciclo de conversión de efectivo —reducir los ~105 días de inventario y renegociar plazos con clientes y proveedores— para llevar la liquidez corriente por encima de 1.0.",
                     color: "border-orange-500",
                     iconColor: "text-orange-600",
                     bgIcon: "bg-orange-100"
                 },
                 {
-                    icon: "ph-activity",
-                    title: "Implementación de Stress Testing Continuo",
-                    text: "Institucionalizar el uso del 'Motor de Decisión Financiera' para simular escenarios climáticos adversos (El Niño) antes de contraer nueva deuda. Exalmar debe asegurar, mediante simulación, que su Cobertura de Intereses no caerá por debajo del nivel de riesgo (1.5x) incluso ante desplomes proyectados del EBITDA.",
+                    icon: "ph-bank",
+                    title: "Reperfilar y Ordenar la Deuda",
+                    text: "Migrar deuda de corto a largo plazo mediante la emisión de bonos corporativos, reduciendo la presión de refinanciación y el gasto financiero; fijar un apalancamiento objetivo y cuidar los covenants para preservar la solvencia.",
                     color: "border-red-500",
                     iconColor: "text-red-600",
                     bgIcon: "bg-red-100"
                 },
                 {
-                    icon: "ph-chart-polar",
-                    title: "Monitoreo Estricto de la Estructura Óptima",
-                    text: "Establecer una política corporativa inamovible de control del ratio Deuda/Patrimonio. Se debe monitorear continuamente el mercado para aprovechar ventanas de tasas bajas (FED), y usar el WACC objetivo como brújula para cualquier decisión de emisión, garantizando así la creación continua de valor para los accionistas.",
+                    icon: "ph-factory",
+                    title: "Ejecutar la Modernización a Harina Prime (Steam Dried)",
+                    text: "Elevar el mix hacia harina de mayor precio de exportación, mejorar el rendimiento de aceite y reducir el costo energético, para revertir la compresión de márgenes y aumentar el margen bruto.",
+                    color: "border-blue-500",
+                    iconColor: "text-blue-600",
+                    bgIcon: "bg-blue-100"
+                },
+                {
+                    icon: "ph-chart-line-up",
+                    title: "Aprobar la Inversión y Gestionar sus Riesgos",
+                    text: "Dado que VAN>0 y TIR>WACC, ejecutar el proyecto de S/ 39.8 MM; monitorear los supuestos críticos (premium de precio prime, volumen y tipo de cambio) mediante análisis de sensibilidad y escenarios.",
                     color: "border-green-500",
                     iconColor: "text-green-600",
                     bgIcon: "bg-green-100"
+                },
+                {
+                    icon: "ph-scales",
+                    title: "Adoptar la Estructura Mixta y Buscar Mejores Tasas",
+                    text: "Implementar el esquema monetario + capitales (capital de trabajo, bonos, leasing y aporte propio) y gestionar una clasificación de riesgo que permita acceder a menores tasas de emisión, optimizando el costo de capital.",
+                    color: "border-purple-500",
+                    iconColor: "text-purple-600",
+                    bgIcon: "bg-purple-100"
                 }
             ];
 
@@ -1250,6 +1275,7 @@ import { SimulationProvider } from "./context/SimulationContext";
                 if (activeSubMenu === 'liquidez-escenarios') return <EscenariosView />;
                 if (activeSubMenu === 'liquidez-estrategia') return <EstrategiaFinanciamientoView />;
                 if (activeSubMenu === 'liquidez-wacc') return <WaccView />;
+                if (activeSubMenu === 'proyecto-steam') return <ProyectoInversionView />;
 
                 // Matrices y Mapas dinámicos
                 if (activeSubMenu && activeSubMenu.includes('matriz')) return <MatrixView activeMenu={activeMenu} />;

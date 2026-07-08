@@ -65,7 +65,7 @@ const CoverPage = ({ onEnter }) => (
                 className="group relative px-8 py-4 bg-white text-exalmar-blue font-black text-xl rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
             >
                 <span className="relative z-10 flex items-center gap-3">
-                    Ingresar al Panel de Riesgos
+                    Ingresar
                     <i className="ph ph-arrow-right-bold text-2xl group-hover:translate-x-2 transition-transform"></i>
                 </span>
                 <div className="absolute inset-0 bg-gray-100 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
