@@ -9,6 +9,15 @@ import { EscenariosView } from "./EscenariosView";
 import { EstrategiaFinanciamientoView } from "./EstrategiaFinanciamientoView";
 import { WaccView } from "./WaccView";
 import { ProyectoInversionView } from "./ProyectoInversionView";
+import { PresupuestoCapitalView } from "./PresupuestoCapitalView";
+import { FuentesFinanciamientoView } from "./FuentesFinanciamientoView";
+import { PresupuestoOperativoView } from "./PresupuestoOperativoView";
+import { PresupuestoFlujoEfectivoView } from "./PresupuestoFlujoEfectivoView";
+import { PresupuestoEstadoSituacionView } from "./PresupuestoEstadoSituacionView";
+import { Proyeccion5AnosView } from "./Proyeccion5AnosView";
+import { EvalEEFFIndicadoresView } from "./EvalEEFFIndicadoresView";
+import { ConclusionesView } from "./ConclusionesView";
+import { RecomendacionesView } from "./RecomendacionesView";
 import { SimulationProvider } from "./context/SimulationContext";
 
 
@@ -56,6 +65,13 @@ import { SimulationProvider } from "./context/SimulationContext";
                     { id: 'proyecto-steam', title: 'Modernización Steam Dried' }
                 ]
             },
+            { id: 'ppto-capital', title: 'Ppto. de Capital', type: 'simple' },
+            { id: 'fuentes-financiamiento', title: 'Fuentes de Financ.', type: 'simple' },
+            { id: 'ppto-operativo', title: 'Ppto. Operativo', type: 'simple' },
+            { id: 'ppto-flujo-efectivo', title: 'Ppto. de ER y FFE', type: 'simple' },
+            { id: 'ppto-estado-situacion', title: 'Ppto. Estado Situación', type: 'simple' },
+            { id: 'proyeccion-5-anos', title: 'Proyección a 5 Años', type: 'simple' },
+            { id: 'eval-eeff-indicadores', title: 'Eval. EEFF e Indicadores', type: 'simple' },
 
             { id: 'conclusiones', title: 'Conclusiones', type: 'simple' },
             { id: 'recomendaciones', title: 'Recomendaciones', type: 'simple' }
@@ -1065,177 +1081,6 @@ import { SimulationProvider } from "./context/SimulationContext";
             );
         };
 
-        const ConclusionesView = () => {
-            const conclusiones = [
-                {
-                    icon: "ph-chart-line-down",
-                    title: "Rentabilidad Positiva pero con Márgenes en Compresión",
-                    text: "En 2025 Exalmar obtuvo ingresos por S/ 531.5 MM y utilidad neta de S/ 38.7 MM (ROE 12.2%). No obstante, el margen bruto se redujo de 30.5% (2021) a 24.0% (2025), reflejando la presión de costos y la volatilidad de precios y biomasa.",
-                    color: "border-blue-500",
-                    iconColor: "text-blue-600",
-                    bgIcon: "bg-blue-100"
-                },
-                {
-                    icon: "ph-drop",
-                    title: "Posición de Liquidez Ajustada",
-                    text: "La liquidez corriente es 0.82 (menor a 1) y el capital de trabajo es NEGATIVO (S/ -64.3 MM) en 2025, lo que indica que la operación se financia con pasivos de corto plazo y enfrenta riesgo de calce.",
-                    color: "border-orange-500",
-                    iconColor: "text-orange-600",
-                    bgIcon: "bg-orange-100"
-                },
-                {
-                    icon: "ph-warning-octagon",
-                    title: "Alto Apalancamiento Financiero",
-                    text: "El ratio de apalancamiento alcanzó 1.82x; la deuda financiera (~S/ 383 MM) supera al patrimonio (S/ 317 MM) y los gastos financieros (S/ 27.8 MM) absorben ~36% de la utilidad operativa, limitando la flexibilidad financiera.",
-                    color: "border-red-500",
-                    iconColor: "text-red-600",
-                    bgIcon: "bg-red-100"
-                },
-                {
-                    icon: "ph-rocket-launch",
-                    title: "El Proyecto de Modernización Crea Valor",
-                    text: "Con una inversión de S/ 39.8 MM arroja un VAN de +S/ 12.2 MM, una TIR de 18.9% (muy superior al WACC de 8.7%) y recupera la inversión en 3.4 años; la sensibilidad muestra VAN positivo en todo el rango de WACC evaluado.",
-                    color: "border-green-500",
-                    iconColor: "text-green-600",
-                    bgIcon: "bg-green-100"
-                },
-                {
-                    icon: "ph-puzzle-piece",
-                    title: "Estructura de Financiamiento Mixta Eficiente",
-                    text: "Combinar el mercado monetario (capital de trabajo) con el mercado de capitales (bonos + leasing + aporte) logra un costo promedio ponderado después de impuestos de 7.4%, por debajo del WACC del proyecto y respetando el calce de plazos.",
-                    color: "border-purple-500",
-                    iconColor: "text-purple-600",
-                    bgIcon: "bg-purple-100"
-                }
-            ];
-
-            return (
-                <div className="w-full h-full bg-white rounded-2xl p-8 md:p-12 relative overflow-y-auto shadow-xl">
-                    <div className="flex items-center gap-5 mb-10">
-                        <div className="bg-exalmar-blue p-4 rounded-2xl shadow-lg">
-                            <i className="ph ph-flag-checkered text-white text-3xl"></i>
-                        </div>
-                        <div>
-                            <h1 className="text-3xl md:text-4xl font-black text-exalmar-dark tracking-tight">Conclusiones Clave</h1>
-                            <p className="text-gray-500 mt-2 text-lg">Resumen estratégico del perfil de riesgos de Pesquera Exalmar</p>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {conclusiones.map((item, index) => (
-                            <div key={index} className={`bg-gray-50/50 rounded-2xl p-8 border-l-[6px] ${item.color} shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group`}>
-                                {/* Marca de agua de fondo */}
-                                <div className="absolute -right-8 -top-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500 transform group-hover:scale-110">
-                                    <i className={`ph ${item.icon} text-[12rem]`}></i>
-                                </div>
-                                
-                                <div className="relative z-10 flex flex-col h-full">
-                                    <div className="flex items-center gap-4 mb-5">
-                                        <div className={`p-3 rounded-xl flex-shrink-0 ${item.bgIcon} ${item.iconColor} shadow-sm`}>
-                                            <i className={`ph ${item.icon} text-3xl`}></i>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-exalmar-dark leading-tight">
-                                            <span className={`text-sm font-black mr-2 px-2 py-1 rounded bg-white shadow-sm ${item.iconColor}`}>0{index + 1}</span>
-                                            <br className="md:hidden" />
-                                            {item.title}
-                                        </h3>
-                                    </div>
-                                    <p className="text-gray-600 leading-relaxed flex-grow text-justify">
-                                        {item.text}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            );
-        };
-
-        const RecomendacionesView = () => {
-            const recomendaciones = [
-                {
-                    icon: "ph-wallet",
-                    title: "Fortalecer el Capital de Trabajo y Liquidez",
-                    text: "Financiar el capital de trabajo del proyecto con el mercado monetario (línea revolvente / papeles comerciales) y optimizar el ciclo de conversión de efectivo —reducir los ~105 días de inventario y renegociar plazos con clientes y proveedores— para llevar la liquidez corriente por encima de 1.0.",
-                    color: "border-orange-500",
-                    iconColor: "text-orange-600",
-                    bgIcon: "bg-orange-100"
-                },
-                {
-                    icon: "ph-bank",
-                    title: "Reperfilar y Ordenar la Deuda",
-                    text: "Migrar deuda de corto a largo plazo mediante la emisión de bonos corporativos, reduciendo la presión de refinanciación y el gasto financiero; fijar un apalancamiento objetivo y cuidar los covenants para preservar la solvencia.",
-                    color: "border-red-500",
-                    iconColor: "text-red-600",
-                    bgIcon: "bg-red-100"
-                },
-                {
-                    icon: "ph-factory",
-                    title: "Ejecutar la Modernización a Harina Prime (Steam Dried)",
-                    text: "Elevar el mix hacia harina de mayor precio de exportación, mejorar el rendimiento de aceite y reducir el costo energético, para revertir la compresión de márgenes y aumentar el margen bruto.",
-                    color: "border-blue-500",
-                    iconColor: "text-blue-600",
-                    bgIcon: "bg-blue-100"
-                },
-                {
-                    icon: "ph-chart-line-up",
-                    title: "Aprobar la Inversión y Gestionar sus Riesgos",
-                    text: "Dado que VAN>0 y TIR>WACC, ejecutar el proyecto de S/ 39.8 MM; monitorear los supuestos críticos (premium de precio prime, volumen y tipo de cambio) mediante análisis de sensibilidad y escenarios.",
-                    color: "border-green-500",
-                    iconColor: "text-green-600",
-                    bgIcon: "bg-green-100"
-                },
-                {
-                    icon: "ph-scales",
-                    title: "Adoptar la Estructura Mixta y Buscar Mejores Tasas",
-                    text: "Implementar el esquema monetario + capitales (capital de trabajo, bonos, leasing y aporte propio) y gestionar una clasificación de riesgo que permita acceder a menores tasas de emisión, optimizando el costo de capital.",
-                    color: "border-purple-500",
-                    iconColor: "text-purple-600",
-                    bgIcon: "bg-purple-100"
-                }
-            ];
-
-            return (
-                <div className="w-full h-full bg-white rounded-2xl p-8 md:p-12 relative overflow-y-auto shadow-xl">
-                    <div className="flex items-center gap-5 mb-10">
-                        <div className="bg-exalmar-blue p-4 rounded-2xl shadow-lg">
-                            <i className="ph ph-lightbulb text-white text-3xl"></i>
-                        </div>
-                        <div>
-                            <h1 className="text-3xl md:text-4xl font-black text-exalmar-dark tracking-tight">Recomendaciones Estratégicas</h1>
-                            <p className="text-gray-500 mt-2 text-lg">Planes de acción sugeridos para la mitigación integral de riesgos</p>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {recomendaciones.map((item, index) => (
-                            <div key={index} className={`bg-gray-50/50 rounded-2xl p-8 border-l-[6px] ${item.color} shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group`}>
-                                <div className="absolute -right-8 -top-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500 transform group-hover:scale-110">
-                                    <i className={`ph ${item.icon} text-[12rem]`}></i>
-                                </div>
-                                
-                                <div className="relative z-10 flex flex-col h-full">
-                                    <div className="flex items-center gap-4 mb-5">
-                                        <div className={`p-3 rounded-xl flex-shrink-0 ${item.bgIcon} ${item.iconColor} shadow-sm`}>
-                                            <i className={`ph ${item.icon} text-3xl`}></i>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-exalmar-dark leading-tight">
-                                            <span className={`text-sm font-black mr-2 px-2 py-1 rounded bg-white shadow-sm ${item.iconColor}`}>0{index + 1}</span>
-                                            <br className="md:hidden" />
-                                            {item.title}
-                                        </h3>
-                                    </div>
-                                    <p className="text-gray-600 leading-relaxed flex-grow text-justify">
-                                        {item.text}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            );
-        };
-
         const App = () => {
             const [showDashboard, setShowDashboard] = useState(false);
             const [activeMenu, setActiveMenu] = useState('info'); 
@@ -1280,6 +1125,15 @@ import { SimulationProvider } from "./context/SimulationContext";
                 // Matrices y Mapas dinámicos
                 if (activeSubMenu && activeSubMenu.includes('matriz')) return <MatrixView activeMenu={activeMenu} />;
                 if (activeSubMenu && activeSubMenu.includes('mapa')) return <HeatmapView activeMenu={activeMenu} />;
+
+                // Proyecto y Presupuestos
+                if (activeMenu === 'ppto-capital') return <PresupuestoCapitalView />;
+                if (activeMenu === 'fuentes-financiamiento') return <FuentesFinanciamientoView />;
+                if (activeMenu === 'ppto-operativo') return <PresupuestoOperativoView />;
+                if (activeMenu === 'ppto-flujo-efectivo') return <PresupuestoFlujoEfectivoView />;
+                if (activeMenu === 'ppto-estado-situacion') return <PresupuestoEstadoSituacionView />;
+                if (activeMenu === 'proyeccion-5-anos') return <Proyeccion5AnosView />;
+                if (activeMenu === 'eval-eeff-indicadores') return <EvalEEFFIndicadoresView />;
 
                 // Conclusiones y Recomendaciones
                 if (activeMenu === 'conclusiones') return <ConclusionesView />;
